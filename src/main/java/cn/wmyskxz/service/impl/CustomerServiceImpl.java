@@ -28,4 +28,12 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getCustomerList(){
         return customerDao.getCustomerList();
     }
+
+    public List<Customer> findSpecificCustomer(String identity,String name,String sex,String phone){
+        return customerDao.findSpecificCustomer( identity, name, sex, phone);
+    }
+
+    public int deleteByIdentity(String identityId){
+        return customerDao.deleteByIdentity(identityId);
+    }
 }

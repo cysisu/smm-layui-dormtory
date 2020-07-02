@@ -20,5 +20,12 @@
         insert  into customer (identityId,name,sex,phone) values(#{identityId},#{name},#{sex},#{phone})
     </insert>
 
+    <select id="findSpecificCustomer" resultType="Customer">
+        select * from customer where (identityId = #{identityId} OR #{identityId}='') AND (name=#{name} OR #{name}='') AND (sex=#{sex} OR #{sex}='') AND (phone=#{phone} OR #{phone}='')
+    </select>
+
+    <delete id="deleteByIdentity">
+        delete from customer where identityId = #{identityId}
+    </delete>
 
 </mapper>

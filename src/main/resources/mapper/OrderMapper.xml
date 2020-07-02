@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wmyskxz.dao.OrderDao">
+
+    <resultMap type="cn.wmyskxz.entity.Order" id="Order">
+        <result column="orderid" property="orderId" />
+        <result column="roomnumber" property="roomNumber" />
+        <result column="identityid" property="identityId" />
+        <result column="workid" property="workId" />
+        <result column="status" property="status" />
+        <result column="intime" property="inTime" />
+        <result column="predicttime" property="predictTime" />
+        <result column="days" property="days" />
+        <result column="price" property="price" />
+        <result column="totalMoney" property="totalMoney" />
+        <result column="label" property="label" />
+        <result column="outtime" property="outTime" />
+    </resultMap>
+
+    <select id="getOrderList" resultMap="Order">
+        select * from roomorder
+    </select>
+
+    <insert id="insertOrder">
+        insert  into `roomorder`(`orderid`,`roomnumber`,`identityid`,`workid`,`status`,`intime`,`predicttime`,`days`,`price`,`totalMoney`,`label`,`outtime`) values(null,#{roomNumber},#{identityId},#{workId},#{status},#{inTime},#{predictTime},#{days},#{price},#{totalMoney},#{label},#{outTime})
+    </insert>
+
+    <delete id="deleteByOrderId">
+        delete from roomorder where orderid = #{orderId}
+    </delete>
+
+    <select id="findSpecificOrders" resultType="Order">
+        select * from roomorder where (identityid = #{identityId} OR #{identityId}='') AND (roomnumber=#{roomNumber} OR #{roomNumber}='')
+    </select>
+
+    <update id="updateOrder">
+        update roomorder set orderid = #{orderId}, roomnumber = #{roomNumber},status=#{status},label=#{label},intime=#{inTime},outtime=#{outTime} where orderId = #{orderId}
+    </update>
+
+    <select id="getOrderById" resultMap="Order">
+        select * from roomorder where orderid=#{orderId}
+    </select>
+</mapper>

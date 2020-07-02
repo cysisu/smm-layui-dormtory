@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="cn.wmyskxz.dao.UserDao">
+
+    <select id="listAll" resultType="User">
+        select * from student
+    </select>
+
+    <!-- 添加用户 -->
+    <insert id="insert">
+        insert into student(id, name, sex, birth,phone,email) values (#{id}, #{name}, #{sex}, #{birth}, #{phone}, #{email})
+    </insert>
+
+    <!-- 删除用户 -->
+    <delete id="deleteById">
+        delete from student where id = #{id}
+    </delete>
+
+    <!-- 更新用户 -->
+    <update id="update">
+        update student set id = #{id}, name = #{name}, sex = #{sex}, birth = #{birth},phone=#{phone},email=#{email} where id = #{id}
+    </update>
+
+    <!-- 根据id查找用户 -->
+    <select id="getById" resultType="User">
+        select * from student where (id = #{id} OR #{id}=-1) AND (name=#{name} OR #{name}='null') AND (phone=#{phone} or #{phone}='null')  AND (sex=#{sex} or #{sex}='null')
+    </select>
+
+    <select id="loginCheck" resultType="Integer">
+        SELECT count(*) FROM manager where nickname=#{name} and password=#{password};
+    </select>
+
+</mapper>

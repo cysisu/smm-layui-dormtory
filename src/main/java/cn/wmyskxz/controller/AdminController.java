@@ -57,6 +57,11 @@ public class AdminController {
         return "/jsp/room";
     }
 
+    @RequestMapping("/roomInfo")
+    public String getRoomInfo() {
+        return "/jsp/roomInfo";
+    }
+
     @RequestMapping("/getMenus")
     @ResponseBody
     public List<Menu> getMenus(HttpSession session){

@@ -29,7 +29,7 @@ public class AdminServiceImpl implements AdminService {
 
         menu=new Menu();
         menu.setMenuId(Long.parseLong("2"));
-        menu.setName("房间信息");
+        menu.setName("订单信息");
 //        menu.setIcon("&#xe66f;");
         menu.setSpread("false");
         menu.setHref("/admin/room");
@@ -44,6 +44,15 @@ public class AdminServiceImpl implements AdminService {
         menu.setHref("/admin/customer");
         menu.setParentId(Long.parseLong("0"));
         menu.setSorting(Long.parseLong("9997"));
+        menus.add(menu);
+
+        menu=new Menu();
+        menu.setMenuId(Long.parseLong("4"));
+        menu.setName("房间信息");
+        menu.setSpread("false");
+        menu.setHref("/admin/roomInfo");
+        menu.setParentId(Long.parseLong("0"));
+        menu.setSorting(Long.parseLong("9996"));
         menus.add(menu);
 
         System.out.println(menu);

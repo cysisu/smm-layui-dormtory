@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wmyskxz.dao.RoomInfoDao">
+        <resultMap type="cn.wmyskxz.entity.RoomInfo" id="RoomInfo">
+            <result column="roomNumber" property="roomNumber" />
+            <result column="type" property="type" />
+            <result column="price" property="price" />
+            <result column="status" property="status" />
+        </resultMap>
+
+         <select id="getRoomInfos" resultMap="RoomInfo">
+                select * from roomInfo
+         </select>
+
+         <delete id="deleteByRoomNumber">
+                 delete from roomInfo where roomNumber = #{roomNumber}
+         </delete>
+
+         <insert id="insertRoomInfo">
+                 insert  into roomInfo (roomNumber,type,price,status) values(#{roomNumber},#{type},#{price},#{status})
+         </insert>
+         <select id="getPriceByRoomNumber" resultMap="RoomInfo">
+                 select price from roomInfo where roomNumber = #{roomNumber}
+         </select>
+</mapper>

@@ -4,6 +4,7 @@ import cn.wmyskxz.entity.Order;
 import cn.wmyskxz.entity.User;
 import cn.wmyskxz.service.AdminService;
 import cn.wmyskxz.service.OrderService;
+import cn.wmyskxz.service.RoomInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private RoomInfoService roomInfoService;
 
     @RequestMapping(value="/getOrders", method = RequestMethod.GET)
     @ResponseBody
@@ -36,6 +40,8 @@ public class OrderController {
     @ResponseBody
     private Map<String, Object> add(@RequestBody Order order) {
         System.out.println(order);
+        String roomNumber=order.getRoomNumber();
+        order.setPrice(roomInfoService.getPriceByRoomNumber(roomNumber));
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
         if(order.getStatus().equals("1")){
